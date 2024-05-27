@@ -1,19 +1,38 @@
 def isPalindrome(s: String): Boolean = {
-  val cleanS = s.replaceAll("[^A-Za-z0-9]", "").map(_.toLower)
-  cleanS == cleanS.reverse
+  var left = 0
+  var right = s.length - 1
+  while (left <= right) {
+    if (!Character.isLetterOrDigit(s(left)))
+      left += 1
+    else if (!Character.isLetterOrDigit(s(right)))
+      right -= 1
+    else if (s(left).toLower != s(right).toLower)
+      return false
+    else {
+      left += 1
+      right -= 1
+    }
+  }
+  true
 }
+
+isPalindrome("A man, a plan, a canal: Panama")
+isPalindrome("raceacar")
+isPalindrome("0P")
+isPalindrome(" ")
+
 
 /*
 Runtime
-688
+621
 ms
 Beats
-19.84%
+65.08%
 of users with Scala
 Memory
-56.21
+56.88
 MB
 Beats
-92.06%
+69.84%
 of users with Scala
  */
